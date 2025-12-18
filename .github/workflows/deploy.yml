@@ -41,6 +41,9 @@ jobs:
         run: |
           echo "USER_PASSWORD = ${{ secrets.USER_PASSWORD }}"
           echo "USER_PASSWORD = ${{ env.USER_PASSWORD }}"
+
+      - name: hello world! 출력
+        run: echo "hello world!"
   My-Deploy-Job:
     needs: My-Build-Job
     name: 배포 작업
