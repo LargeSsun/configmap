@@ -20,4 +20,7 @@ jobs:
         run: pwd
  
       - name: 작업폴더 목록
-        run: ls -la 
+        run: ls -la
+
+      - name: 환경변수 모두 출력
+        run: env
