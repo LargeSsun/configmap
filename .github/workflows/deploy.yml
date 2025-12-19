@@ -52,3 +52,10 @@ jobs:
     steps:
       - name: 배포 작업 1단계 파일 생성
         run: echo "Hello World" > output.txt
+
+      - name: configmap checksum
+        run: |
+          export checksum=$(kubectl get configmap my-app-config -o yaml | sha256sum | awk '{print $1}')
+          kubectl apply -f configmap.yaml
+          kubectl patch deployment my-app-deployment -p \
+            '{"spec":{"template":{"metadata":{"annotations":{"checksum/config": "'$checksum'"}}}}}'
